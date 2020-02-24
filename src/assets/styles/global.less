@@ -1,0 +1,55 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font: 12px/1.5 tahoma,arial,'Hiragino Sans GB','\5b8b\4f53',sans-serif;
+  color: #6C6C6C;
+}
+
+#app {
+  width: 100%;
+  height: 100%;
+  min-width: 1006px;
+  overflow: hidden;
+}
+
+.container {
+  width: 1190px;
+  margin: 0 auto;
+}
+
+@media (max-width: 1207px) {
+  .container {
+    width: 990px;
+  }
+}
+
+ul, ol {
+  list-style: none;
+}
+
+input {
+  outline: none;
+}
+
+.clear-fix {
+  &:before, :after {
+    display: block;
+    width: 0;
+    height: 0;
+  }
+
+  &:after {
+    clear: both;
+  }
+}
+
+a {
+  text-decoration: none;
+  color: #6C6C6C;
+}
