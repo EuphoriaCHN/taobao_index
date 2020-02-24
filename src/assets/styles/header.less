@@ -40,6 +40,7 @@
           left: 0;
           overflow-y: scroll;
           border: 1px solid #eeeeee;
+          background-color: #ffffff;
           display: none;
 
           li {
@@ -96,13 +97,126 @@
 
           &.web-tag {
             width: 84px;
+            position: relative;
+
+            &:hover {
+              > .nav-header-web-more-bar {
+                display: block;
+              }
+            }
+
+            > .nav-header-web-more-bar {
+              position: absolute;
+              top: 32px;
+              right: 0;
+              height: 310px;
+              width: 1190px;
+              border: 1px solid #eeeeee;
+              background-color: #ffffff;
+              z-index: 9999;
+              display: none;
+
+              > ul {
+                height: 100%;
+                .web-more-item {
+                  width: 286px;
+                  height: 100%;
+                  float: left;
+                  padding: 5px;
+                  border-right: 1px solid #eeeeee;
+
+                  &:last-child {
+                    border-right: none;
+                  }
+
+                  h4 {
+                    text-align: left;
+                    height: 20px;
+                    line-height: 20px;
+                    margin: 5px;
+                    font-size: 16px;
+                    font-weight: 600;
+                  }
+
+                  li {
+                    float: left;
+                    padding-top: 5px;
+                    a {
+                      position: relative;
+                      float: left;
+                      height: 25px;
+                      line-height: 25px;
+                      margin: 0 2px;
+                      padding: 0 8px;
+                      border-radius: 2px;
+                      color: #3c3c3c;
+                      &:hover {
+                        color: white!important;
+                      }
+                    }
+                  }
+
+                  >.topical-market {
+                    // 主题市场
+                    h4 {
+                      color: #fc4200;
+                    }
+                    li {
+                      width: 24%;
+                      a:hover {
+                        background-color: #fc4200;
+                      }
+                    }
+                  }
+
+                  >.special-market {
+                    // 特色市场
+                    h4 {
+                      color: #9fb838;
+                    }
+                    li {
+                      width: 33%;
+                      a:hover {
+                        background-color: #9fb838;
+                      }
+                    }
+                  }
+
+                  >.ali-app {
+                    // 阿里APP
+                    h4 {
+                      color: #d75696;
+                    }
+                    li {
+                      width: 33%;
+                      a:hover {
+                        background-color: #d75696;
+                      }
+                    }
+                  }
+
+                  >.highlights {
+                    // 精彩推荐集
+                    h4 {
+                      color: #2e9fdb;
+                    }
+                    li {
+                      width: 49%;
+                      a:hover {
+                        background-color: #2e9fdb;
+                      }
+                    }
+                  }
+                }
+              }
+            }
           }
 
           &.has-drop-bar {
             position: relative;
 
             &:hover {
-              background-color: #fff;
+              background-color: #ffffff;
               cursor: pointer;
               .nav-header-drop-bar {
                 display: block;
@@ -112,6 +226,7 @@
             .nav-header-drop-bar {
               width: 82px;
               border: 1px solid #eeeeee;
+              background-color: #ffffff;
               border-top: none;
               padding: 8px 0;
               display: none;
@@ -123,6 +238,10 @@
                 background-color: #f5f5f5;
                 color: #6C6C6C;
                 cursor: pointer;
+
+                a {
+                  color: #6C6C6C!important;
+                }
               }
             }
           }
