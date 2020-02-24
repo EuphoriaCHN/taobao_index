@@ -46,6 +46,8 @@
   import '@/assets/images/TB1_uT8a5ERMeJjSspiXXbZLFXa-143-59.png';
   import '@/assets/images/TB1RgLRvkL0gK0jSZFAXXcA9pXa-120-120.png';
 
+  import '@/assets/styles/navbar.less';
+
   export default {
     name: "NavBar",
     data() {
@@ -55,7 +57,7 @@
           '耳机', '时尚女包', '沙发'
         ]
       };
-    }
+    },
   }
 </script>
 

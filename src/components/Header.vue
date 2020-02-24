@@ -164,6 +164,8 @@
 </template>
 
 <script>
+  import '@/assets/styles/header.less';
+
   export default {
     name: "Header",
     data() {

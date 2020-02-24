@@ -7,13 +7,20 @@ import router from './router'
 Vue.config.productionTip = false
 
 import '@/assets/styles/global.less';
-import '@/assets/styles/header.less';
-import '@/assets/styles/navbar.less';
 
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
-  components: { App },
-  template: '<App/>'
+  components: {App},
+  template: '<App/>',
+  created() {
+    // const targetW = 1280;
+    // const scale = window.screen.width / targetW;
+    // const meta = document.createElement('meta');
+    // meta.name = "viewport";
+    // meta.content = "initial-scale=" + scale + ", minimum-scale=" + scale + ", maximum-scale=" + scale + ",user-scalable=no";
+    // document.head.appendChild(meta);
+    // console.log(1);
+  }
 })
