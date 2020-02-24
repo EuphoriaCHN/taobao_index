@@ -8,6 +8,7 @@ Vue.config.productionTip = false
 
 import '@/assets/styles/global.less';
 import '@/assets/styles/header.less';
+import '@/assets/styles/navbar.less';
 
 /* eslint-disable no-new */
 new Vue({
