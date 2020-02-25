@@ -8,6 +8,8 @@ Vue.config.productionTip = false
 
 import '@/assets/styles/global.less';
 
+import $ from 'jquery';
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

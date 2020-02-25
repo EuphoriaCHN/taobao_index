@@ -8,6 +8,157 @@
   }
 }
 
+.menu-list-item-hover {
+  background-color: #ffe4dc;
+  color: #ff5000;
+  a {
+    color: #ff5000;
+  }
+}
+
+.more-z-index-bar {
+  position: absolute;
+  top: 0;
+  left: 188px;
+  z-index: 999;
+  width: 709px;
+  height: 518px;
+  border: 2px solid #f94a14;
+  -webkit-box-shadow: 2px 2px 0 #dcdadb;
+  -moz-box-shadow: 2px 2px 0 #dcdadb;
+  box-shadow: 2px 2px 0 #dcdadb;
+  background-color: #ffffff;
+  color: #333333;
+  font-size: 12px;
+  opacity: 0;
+  overflow: hidden;
+  .each-page {
+    height: 100%;
+    padding-left: 18px;
+    overflow: hidden;
+
+    > .service-fi-links {
+      width: 415px;
+      height: 490px;
+      padding: 10px 12px 0 10px;
+      float: left;
+      overflow: hidden;
+
+      > .service-panel {
+        h5 {
+          position: relative;
+          height: 36px;
+          line-height: 36px;
+          font-size: 16px;
+          color: #333;
+
+          a {
+            position: absolute;
+            color: #3C3C3C;
+            cursor: pointer;
+            text-decoration: none;
+
+            &:hover {
+              color: #ff5000;
+            }
+          }
+
+          span {
+            position: absolute;
+            font-size: 12px;
+            right: 0;
+            font-weight: 400;
+            cursor: pointer;
+            top: 0;
+            &:hover {
+              color: #ff5000;
+            }
+          }
+        }
+
+        p {
+          height: 104px;
+          padding-bottom: 33px;
+          overflow: hidden;
+
+          a {
+            display: inline-block;
+            height: 25.6px;
+            line-height: 26px;
+            margin-right: 13px;
+            white-space: nowrap;
+            font-size: 12px;
+            color: #666666;
+
+            &.h {
+              color: #ff5000!important;
+            }
+          }
+        }
+      }
+    }
+
+    > .service-rmd {
+      border-left: 1px solid #f4f4f4;
+      width: 253px;
+      height: 498px;
+      padding-top: 20px;
+      float: left;
+
+      h3 {
+        line-height: 18px;
+        color: #333;
+        font-size: 14px;
+        text-align: center;
+        font-weight: 400;
+      }
+
+      a {
+        display: block;
+        width: 97px;
+        height: 143px;
+        padding: 10px 0 0 20px;
+        overflow: hidden;
+        float: left;
+
+        img {
+          width: 98px;
+          height: 97px;
+          display: inline-block;
+        }
+
+        h5 {
+          height: 26px;
+          line-height: 26px;
+          font-size: 12px;
+          overflow: hidden;
+          font-weight: 400;
+          text-align: center;
+          color: #999;
+          -webkit-transition: all .2s;
+          -moz-transition: all .2s;
+          -o-transition: all .2s;
+          transition: all .2s;
+        }
+
+        &:hover {
+          h5 {
+            color: #ff4400;
+          }
+        }
+      }
+    }
+  }
+  &.active {
+    opacity: 1;
+    -webkit-transition: opacity .3s;
+    -moz-transition: opacity .3s;
+    -ms-transition: opacity .3s;
+    -o-transition: opacity .3s;
+    transition: opacity .3s;
+  }
+}
+
 .main-menu {
   > .container {
     height: 522px;
@@ -17,18 +168,19 @@
       float: left;
       height: 100%;
       width: 900px;
-      overflow: hidden;
 
       > .menu-list {
         float: left;
         height: 100%;
         width: 190px;
+        position: relative;
 
         ul {
           padding: 5px 0 3px 0;
           border: 1px solid #ff5000;
           border-top: none;
           background-color: #ffffff;
+          position: relative;
 
           li {
             -webkit-box-sizing: border-box;
@@ -37,20 +189,11 @@
             padding: 0 19px 0 25px;
             height: 32px;
             line-height: 32px;
-            -webkit-transition: all .2s;
-            -moz-transition: all .2s;
-            -ms-transition: all .2s;
-            -o-transition: all .2s;
-            transition: all .2s;
-
-            &:hover {
-              background-color: #ffe4dc;
-              color: #ff5000;
-
-              a {
-                color: #ff5000;
-              }
-            }
+            -webkit-transition: background-color .2s;
+            -moz-transition: background-color .2s;
+            -ms-transition: background-color .2s;
+            -o-transition: background-color .2s;
+            transition: background-color .2s;
 
             a {
               font-size: 14px;
@@ -134,6 +277,7 @@
 
                 .many-images {
                   overflow: hidden;
+                  background-color: #ffffff;
 
                   ul {
                     height: 100%;
@@ -193,7 +337,7 @@
           margin: 10px 10px 0 0;
 
           .bottom {
-            padding-top: 6px;
+            padding-top: 4px;
 
             h5 {
               font-size: 12px;
@@ -505,6 +649,10 @@
           text-align: center;
           z-index: 3;
           line-height: 30px;
+          &:hover {
+            color: #ff5000;
+            text-decoration: underline;
+          }
         }
 
         ul {
@@ -546,7 +694,7 @@
       > .login-and-more {
         position: absolute;
         top: 0;
-        right: -10px;
+        right: -30px;
       }
     }
   }
