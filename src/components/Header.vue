@@ -160,14 +160,18 @@
         </li>
       </ul>
     </div>
+    <bar-advertizement></bar-advertizement>
   </header>
 </template>
 
 <script>
+  import BarAdvertizement from '@/components/Header/BarAdvertizement';
+
   import '@/assets/styles/header.less';
 
   export default {
     name: "Header",
+    components: {BarAdvertizement},
     data() {
       return {
         siteHeaderSwitch: ['全部', '中国大陆', '中国香港', '中国澳门', '韩国', '马来西亚', '澳大利亚', '新加坡', '新西兰', '加拿大', '日本'],

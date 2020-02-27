@@ -1,15 +1,10 @@
-function formatMainListStringToJSON(str) {
-  let ans = [];
-  for (let i = 0; i < arguments.length; i++) {
-    let eachAns = [];
-    arguments[i].split(' ').forEach(value => {
-      eachAns.push(
-        {name: value, h: false}
-      );
-    });
-    ans.push(eachAns);
-  }
-  return ans;
-}
+const val = '879969355@qq.com';
+// const rex = /\d{1,3}(?=(\d{3})+$)/g;
+const rex = /^\w+@[a-zA-Z0-9]{2,10}(?:\.[a-z]{2,4}){1,3}$/;
 
-console.log(JSON.stringify());
+// console.log(val.replace(/^(-?)(\d+)((\.\d+)?)$/, function (s, s1, s2, s3) {
+//   return s1 + s2.replace(rex, '$&,') + s3;
+// }));
+// console.log(val.replace(rex, '$&,'));
+
+console.log(rex.test(val));
