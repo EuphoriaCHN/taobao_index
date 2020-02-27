@@ -4,15 +4,15 @@
       <div class="display-dist">
         <section
           class="menu-list"
-          @mouseenter="menuListSectionMouseEnter"
-          @mouseleave="menuListSectionMouseLeave"
+          @mouseenter="onMenuListSectionMouseEnter"
+          @mouseleave="onMenuListSectionMouseLeave"
         >
-          <ul>
+          <ul @mouseleave="onMenuListMouseLeave">
             <li
               v-for="(value, index) in menuList"
               :key="index"
-              @mouseenter="menuListMouseEnter(index, $event)"
-              @mouseleave="menuListMouseLeave"
+              @mouseenter="onMenuListItemsMouseEnter(index, $event)"
+              @mouseleave="onMenuListItemsMouseLeave"
             >
               <a href="#" v-text="value.menuList[0]"></a>
               <span>/</span>
@@ -292,6 +292,7 @@
         menuListId: 0,
         controlDetailMenuList: false,
         controlDetailMenuListTimeout: false,
+        controlDetailMenuListSetTimeoutTimer: null,
 
         advRotationSwiperOptions: {
           pagination: {
@@ -310,10 +311,6 @@
         },
         tmallSwiperObject: null,
         tmallSwiperOptions: {
-          pagination: {
-            el: '.swiper-pagination',
-            clickable: true
-          },
           navigation: {
             nextEl: '.swiper-button-next',
             prevEl: '.swiper-button-prev'
@@ -337,23 +334,34 @@
       };
     },
     methods: {
-      menuListSectionMouseEnter(event) {
+      onMenuListSectionMouseEnter(event) {
         this.controlDetailMenuList = true;
-        setTimeout(() => {
+        // 设置一个计时器，因为 setTimeout 是异步的，这个 timer 会立刻有一个值
+        this.controlDetailMenuListSetTimeoutTimer = setTimeout(() => {
+          this.controlDetailMenuListSetTimeoutTimer = null; // 等计时器确实执行到了，就清空
           this.controlDetailMenuListTimeout = true;
         }, 200);
       },
-      menuListSectionMouseLeave(event) {
+      onMenuListSectionMouseLeave(event) {
         this.controlDetailMenuList = false;
         this.controlDetailMenuListTimeout = false;
       },
-      menuListMouseEnter(index, event) {
+      onMenuListMouseLeave() {
+        // 如果鼠标移出菜单栏的时候，计时器还没有执行到，那就不用显示悬浮盒子了
+        // 这时就把原来的计时器关了就好
+        if (this.controlDetailMenuListSetTimeoutTimer !== null) {
+          clearTimeout(this.controlDetailMenuListSetTimeoutTimer);
+          this.controlDetailMenuListSetTimeoutTimer = null;
+          this.controlDetailMenuList = false;
+        }
+      },
+      onMenuListItemsMouseEnter(index, event) {
         event.target.itemHoverTimer = setTimeout(() => {
           $(event.target).addClass('menu-list-item-hover');
           this.menuListId = index;
         }, 200);
       },
-      menuListMouseLeave(event) {
+      onMenuListItemsMouseLeave(event) {
         if (event.target.itemHoverTimer !== '') {
           clearTimeout(event.target.itemHoverTimer);
           event.target.itemHoverTimer = '';
