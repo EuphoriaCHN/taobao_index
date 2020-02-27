@@ -52,7 +52,7 @@
                   v-for="(value, index) in value.rmdImageDescriptions"
                   :key="index"
                 >
-                  <img :src="test" alt="" />
+                  <img :src="test" alt=""/>
                   <h5 v-text="value"></h5>
                 </a>
               </div>
@@ -71,7 +71,7 @@
                   <a href="#"><img :src="value" alt=""/></a>
                 </swiper-slide>
                 <!-- Optional controls -->
-                <div class="swiper-pagination"  slot="pagination"></div>
+                <div class="swiper-pagination" slot="pagination"></div>
                 <div class="swiper-button-prev swiper-button" slot="button-prev"><span class="arrow">&lt;</span></div>
                 <div class="swiper-button-next swiper-button" slot="button-next"><span class="arrow">&gt;</span></div>
               </swiper>
@@ -85,10 +85,10 @@
                 <span class="each-pages"><span class="now" v-text="tmallEachPagesText.value"></span>/6</span>
               </div>
               <div class="tmall-images">
-                <ul class="process-bar">
-                  <li></li>
+                <ul class="process-bar" ref="tmallProcessBar">
+                  <li v-for="i in tmallGoodsShow.length + 1" :key="i" @click.self="changeTmailProcessBar(i)"></li>
                 </ul>
-                <swiper class="images-rotation" :options="tmallSwiperOptions">
+                <swiper class="images-rotation" :options="tmallSwiperOptions" ref="tmallSwiper">
                   <swiper-slide class="many-images">
                     <ul class="clear-fix">
                       <li
@@ -104,8 +104,8 @@
                     v-for="(value, index) in tmallGoodsShow"
                     :key="index"
                   >
-                    <a class="two-images-anchor" href="#"><img :src="value[0]" alt="" /></a>
-                    <a class="two-images-anchor" href="#"><img :src="value[1]" alt="" /></a>
+                    <a class="two-images-anchor" href="#"><img :src="value[0]" alt=""/></a>
+                    <a class="two-images-anchor" href="#"><img :src="value[1]" alt=""/></a>
                   </swiper-slide>
                   <div class="swiper-button-prev swiper-button" slot="button-prev"><span class="arrow">&lt;</span></div>
                   <div class="swiper-button-next swiper-button" slot="button-next"><span class="arrow">&gt;</span></div>
@@ -236,7 +236,8 @@
 
   import axios from 'axios';
 
-  let tmallEachPagesText;
+  let tmallEachPagesText = null;
+  let tmallProcessBarListItems = {};
 
   export default {
     name: "MainMenu",
@@ -307,6 +308,7 @@
           },
           loop: true,
         },
+        tmallSwiperObject: null,
         tmallSwiperOptions: {
           pagination: {
             el: '.swiper-pagination',
@@ -324,6 +326,8 @@
           on: {
             slideChange() {
               tmallEachPagesText.value = this.realIndex + 1;
+              tmallProcessBarListItems.lastActive.removeClass('active');
+              tmallProcessBarListItems.lastActive = $(tmallProcessBarListItems.items[this.realIndex]).addClass('active');
             }
           },
         },
@@ -357,6 +361,12 @@
             $(event.target).removeClass('menu-list-item-hover');
           }, 200);
         }
+      },
+      changeTmailProcessBar(index) {
+        tmallProcessBarListItems.lastActive.removeClass('active');
+        tmallProcessBarListItems.lastActive = $(tmallProcessBarListItems.items[index]).addClass('active');
+
+        this.tmallSwiperObject.slideTo(index, 0);
       }
     },
     beforeMount() {
@@ -365,6 +375,12 @@
           this.menuList = value.data;
         });
       tmallEachPagesText = this.tmallEachPagesText;
+    },
+    mounted() {
+      tmallProcessBarListItems.items = $(this.$refs.tmallProcessBar).find('li');
+      tmallProcessBarListItems.lastActive = $(tmallProcessBarListItems.items[0]).addClass('active');
+
+      this.tmallSwiperObject = this.$refs.tmallSwiper.swiper;
     }
   }
 </script>

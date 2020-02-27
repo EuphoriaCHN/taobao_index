@@ -350,6 +350,14 @@
                 width: 100%;
                 height: 3px;
                 background-color: #ff1648;
+                display: flex;
+                > li {
+                  flex: 1;
+                  cursor: pointer;
+                  &.active {
+                    background-color: #000000;
+                  }
+                }
               }
 
               .images-rotation {
