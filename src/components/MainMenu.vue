@@ -62,14 +62,19 @@
         <div class="goods-show">
           <div class="rotation-charts">
             <div class="adv-rotation">
-              <ul>
-                <li
+              <swiper :options="advRotationSwiperOptions">
+                <swiper-slide
+                  class="swiper-slide"
                   v-for="(value, index) in advRotation"
                   :key="index"
                 >
                   <a href="#"><img :src="value" alt=""/></a>
-                </li>
-              </ul>
+                </swiper-slide>
+                <!-- Optional controls -->
+                <div class="swiper-pagination"  slot="pagination"></div>
+                <div class="swiper-button-prev swiper-button" slot="button-prev"><span class="arrow">&lt;</span></div>
+                <div class="swiper-button-next swiper-button" slot="button-next"><span class="arrow">&gt;</span></div>
+              </swiper>
             </div>
             <div class="tmall-rotation">
               <div class="tmall-title">
@@ -77,31 +82,34 @@
                   <img src="../assets/images/tmall.png" alt="">
                 </span>
                 <em>理想生活上天猫</em>
+                <span class="each-pages"><span class="now" v-text="tmallEachPagesText.value"></span>/6</span>
               </div>
               <div class="tmall-images">
                 <ul class="process-bar">
                   <li></li>
                 </ul>
-                <ul class="images-rotation">
-                  <li class="many-images">
+                <swiper class="images-rotation" :options="tmallSwiperOptions">
+                  <swiper-slide class="many-images">
                     <ul class="clear-fix">
                       <li
                         v-for="(value, index) in manyImages"
                         :key="index"
                       >
-                        <a href="#"><img :src="value" alt=""/></a>
+                        <a class="more-images-anchor" href="#"><img :src="value" alt=""/></a>
                       </li>
                     </ul>
-                  </li>
-                  <!--                  <li-->
-                  <!--                    class="two-images"-->
-                  <!--                    v-for="(value, index) in tmallGoodsShow"-->
-                  <!--                    :key="index"-->
-                  <!--                  >-->
-                  <!--                    <img :src="value[0]" alt="" />-->
-                  <!--                    <img :src="value[1]" alt="" />-->
-                  <!--                  </li>-->
-                </ul>
+                  </swiper-slide>
+                  <swiper-slide
+                    class="two-images"
+                    v-for="(value, index) in tmallGoodsShow"
+                    :key="index"
+                  >
+                    <a class="two-images-anchor" href="#"><img :src="value[0]" alt="" /></a>
+                    <a class="two-images-anchor" href="#"><img :src="value[1]" alt="" /></a>
+                  </swiper-slide>
+                  <div class="swiper-button-prev swiper-button" slot="button-prev"><span class="arrow">&lt;</span></div>
+                  <div class="swiper-button-next swiper-button" slot="button-next"><span class="arrow">&gt;</span></div>
+                </swiper>
               </div>
             </div>
           </div>
@@ -228,11 +236,14 @@
 
   import axios from 'axios';
 
+  let tmallEachPagesText;
+
   export default {
     name: "MainMenu",
     data() {
       return {
         test: require('../assets/images/service-md/709982809.jpg'),
+        // TODO::这里是菜单栏右侧的一个个图片集合
         menuList: [],
         advRotation: [
           require('../assets/images/TB16LA.vHr1gK0jSZFDXXb9yVXa-520-280.jpg'),
@@ -280,6 +291,45 @@
         menuListId: 0,
         controlDetailMenuList: false,
         controlDetailMenuListTimeout: false,
+
+        advRotationSwiperOptions: {
+          pagination: {
+            el: '.swiper-pagination',
+            clickable: true
+          },
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev'
+          },
+          autoplay: {
+            delay: 3000,
+            disableOnInteraction: false,
+          },
+          loop: true,
+        },
+        tmallSwiperOptions: {
+          pagination: {
+            el: '.swiper-pagination',
+            clickable: true
+          },
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev'
+          },
+          autoplay: {
+            delay: 3000,
+            disableOnInteraction: false,
+          },
+          loop: true,
+          on: {
+            slideChange() {
+              tmallEachPagesText.value = this.realIndex + 1;
+            }
+          },
+        },
+        tmallEachPagesText: {
+          value: 1
+        },
       };
     },
     methods: {
@@ -314,6 +364,7 @@
         .then(value => {
           this.menuList = value.data;
         });
+      tmallEachPagesText = this.tmallEachPagesText;
     }
   }
 </script>

@@ -4,11 +4,16 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
 
 import '@/assets/styles/global.less';
 
 import $ from 'jquery';
+
+import VueSwiper from 'vue-awesome-swiper';
+import 'swiper/dist/css/swiper.css';
+
+Vue.use(VueSwiper);
 
 /* eslint-disable no-new */
 new Vue({
